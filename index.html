@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="index.html">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will You Be My Valentine Forever, Pumpkin? 💍</title>
     <style>
@@ -89,7 +89,7 @@
     <h1 id="proposalText">Will You Be My Valentine Forever, Pumpkin?</h1>
     <div class="question" id="questionText">Ready for a fun quiz? Let's go!</div>
     
-    <button class="answer-btn yes-btn" onclick="nextQuestion()">Yes, let's go! 💖</button>
+    <button class="answer-btn yes-btn" id="yesButton" onclick="nextQuestion()">Yes, let's go! 💖</button>
     <button class="answer-btn no-btn" id="noButton" onclick="answerNo()">No 😢</button>
 
     <div class="emoji" id="emoji"></div>
@@ -98,7 +98,7 @@
 
 <script>
     const name = "Pumpkin";  // You can change this to your desired nickname
-    document.querySelector("#proposalText").innerHTML = `Will You Be My Valentine Forever, ${pumpkin}?`;
+    document.querySelector("#proposalText").innerHTML = `Will You Be My Valentine Forever, ${name}?`;
 
     const questions = [
         {
@@ -171,9 +171,11 @@
         document.getElementById("questionText").innerHTML = "Will you be my Valentine forever? 💍";
         document.getElementById("result").innerHTML = "You’re my everything! 💖";
         document.getElementById("emoji").innerHTML = "❤️💍";
-        document.querySelector(".yes-btn").disabled = true;
-        document.querySelector(".no-btn").disabled = true;
+        document.getElementById("yesButton").disabled = true;
+        document.getElementById("noButton").disabled = true;
     }
+
+    nextQuestion();  // Start the quiz automatically
 </script>
 
 </body>
