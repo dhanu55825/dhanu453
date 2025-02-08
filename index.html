@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="index.html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine Forever, Pumpkin? 💍</title>
+    <style>
+        /* Background */
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/chequers.png');
+            background-color: #ffe6f0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #ff1493;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .question {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #ff1493;
+        }
+
+        .answer-btn {
+            padding: 15px 30px;
+            font-size: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .yes-btn {
+            background-color: #ff1493;
+            color: white;
+        }
+
+        .no-btn {
+            background-color: #ff6347;
+            color: white;
+            position: relative;
+        }
+
+        .yes-btn:hover {
+            background-color: #ff69b4;
+        }
+
+        .no-btn:hover {
+            background-color: #ff4500;
+        }
+
+        .emoji {
+            font-size: 50px;
+            margin-top: 20px;
+        }
+
+        .result {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 id="proposalText">Will You Be My Valentine Forever, Pumpkin?</h1>
+    <div class="question" id="questionText">Ready for a fun quiz? Let's go!</div>
+    
+    <button class="answer-btn yes-btn" onclick="nextQuestion()">Yes, let's go! 💖</button>
+    <button class="answer-btn no-btn" id="noButton" onclick="answerNo()">No 😢</button>
+
+    <div class="emoji" id="emoji"></div>
+    <div class="result" id="result"></div>
+</div>
+
+<script>
+    const name = "Pumpkin";  // You can change this to your desired nickname
+    document.querySelector("#proposalText").innerHTML = `Will You Be My Valentine Forever, ${pumpkin}?`;
+
+    const questions = [
+        {
+            question: "Why do I love you?",
+            answers: ["Because it's you 💖", "For the red passport 😆"],
+            correct: 0
+        },
+        {
+            question: "At first, did I make you uncomfortable?",
+            answers: ["Yes 😅", "You're dumb now also 🤭"], 
+            correct: 1
+        },
+        {
+            question: "Do you want to be with me forever?",
+            answers: ["I do too! 🥰", "I need some time 😭"], 
+            correct: 0
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+
+    function nextQuestion() {
+        if (currentQuestionIndex >= questions.length) {
+            showProposal();
+            return;
+        }
+
+        const currentQuestion = questions[currentQuestionIndex];
+        document.getElementById("questionText").innerHTML = currentQuestion.question;
+        const buttons = document.querySelectorAll(".answer-btn");
+
+        buttons[0].innerHTML = currentQuestion.answers[0];
+        buttons[1].innerHTML = currentQuestion.answers[1];
+
+        buttons[0].setAttribute("onclick", `checkAnswer(0)`);
+        buttons[1].setAttribute("onclick", `checkAnswer(1)`);
+
+        currentQuestionIndex++;
+    }
+
+    function checkAnswer(selectedIndex) {
+        const currentQuestion = questions[currentQuestionIndex - 1];
+        const resultElement = document.getElementById("result");
+
+        if (selectedIndex === currentQuestion.correct) {
+            resultElement.innerHTML = "Correct! 💖";
+        } else {
+            resultElement.innerHTML = "Oops! But I still love you. 😘";
+        }
+
+        setTimeout(nextQuestion, 1000);
+    }
+
+    function answerNo() {
+        const noButton = document.getElementById("noButton");
+
+        noButton.addEventListener("mouseover", function() {
+            this.style.position = "absolute";
+            this.style.top = Math.random() * window.innerHeight + "px";
+            this.style.left = Math.random() * window.innerWidth + "px";
+        });
+
+        document.getElementById("questionText").innerHTML = "do u love me  😢";
+        document.getElementById("result").innerHTML = "Getting tears 💔";
+        document.getElementById("emoji").innerHTML = "😭";
+    }
+
+    function showProposal() {
+        document.getElementById("questionText").innerHTML = "Will you be my Valentine forever? 💍";
+        document.getElementById("result").innerHTML = "You’re my everything! 💖";
+        document.getElementById("emoji").innerHTML = "❤️💍";
+        document.querySelector(".yes-btn").disabled = true;
+        document.querySelector(".no-btn").disabled = true;
+    }
+</script>
+
+</body>
+</html>
